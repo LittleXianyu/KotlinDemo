@@ -1,0 +1,113 @@
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+//apply plugin: 'android-aspectjx'
+
+//或者这样也可以
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "com.example.myapplication"
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        debug{
+            buildConfigField "String","APP_NAME","\"xianyu\""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String","APP_NAME","\"xianyu\""
+
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+// 解压缩第三方jar包到某目录，拷贝过程中去掉我们要修改的class
+task unzip(type: Copy) {
+    System.out.println("eeeee")
+//    // 原始jar包文件
+//    def zipFile = file('libs/GDTSDK.jar')
+//
+//    // 解压缩目标目录
+//    def outputDir1 = file("unpacked1")
+//    def outputDir2 = file("unpacked2")
+//
+//
+//    // 文件过滤，去除部分class。这里建议写精确点，因为可能存在名称相同或相近的文件。
+//    FileTree jarTree = zipTree(zipFile)
+//    jarTree.visit {}
+//    // 从jar的目录树中输出到目标目录
+//    from jarTree
+//    into outputDir1
+}
+
+
+
+dependencies {
+//    unzip
+    System.out.println("======")
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // kotlin coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.0"
+    implementation "androidx.activity:activity-ktx:1.2.0"
+
+    implementation 'com.squareup.okhttp3:okhttp:3.12.12'
+
+    implementation 'com.google.dagger:dagger:2.28.3'
+    implementation 'com.google.dagger:dagger-android:2.35.1'
+    implementation 'com.google.dagger:dagger-android-support:2.35.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.28.3'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.28.3'
+//
+//    implementation 'com.google.dagger:dagger:2.15'
+//    implementation 'com.google.dagger:dagger-android:2.15'
+//    implementation 'com.google.dagger:dagger-android-support:2.15' // if you use the support libraries
+//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.15'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
+    implementation 'javax.inject:javax.inject:1'
+   implementation 'javax.annotation:javax.annotation-api:1.2'//添加Android缺失部分Javax注解
+
+}
+task pp{
+    System.out.println("==222====")
+
+}
